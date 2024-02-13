@@ -2,10 +2,19 @@
 	<head>
 		Homework 1: Rasterizer
 	</head>
+	<head>
+		Leo Yuan & David Long
+	</head>
+	<head>
+		link: https://cal-cs184-student.github.io/hw-webpages-sp24-Kirtooo/
+	</head>
 	<body>
-		<h2>
-			Overview:
-		</h2>
+		<h2>Overview:</h2>
+		<p>
+			Throughout this homework, we were able to explore and implement sampling, supersampling, transform, barycentric coordinates, and texture mapping. 
+			By implement those various techniques, we were able to parctically see the effect of applying those on the image that rendered.
+			I am really impressed by how useful barycentric coordinates are, as we used it to perfomred point-in-triangle test and also explored more of it in task4.
+		</p>
 		<h2>Task1: </h2>
 		<p>
 			1. We first computed the boundary for the triangle by calculating the min and max value of X and Y for the three verices of the traingle.
@@ -48,12 +57,16 @@
 			  <img src="image/task2_rate16.png" alt="sample rate = 16" style="width:100%">
 			</div>
 		</div>
-		<h2>
-			Task3:
-		</h2>
-		<h2>
-			Task4:
-		</h2>
+		<h2>Task3:</h2>
+		<p>We tried to make the cubeman waving hands.</p>
+		<img src="image/hw1_task3.png" alt = "waving cubeman">
+		<h2>Task4:</h2>
+		<img src="image/task4_triangle.png" alt = "simple triangle">
+		<p>From my understanding, barycentric coordinates is that we can represent each points in a triangle by the relationship to the three vertices.
+			As we can see from the picture above, all vertices of the triangle have different color, whereas points inside the triangle are a mix of those three colors.
+			The closer the point is towerds a vertices, we can see that point has a more simalar color to that vertice. This is becasue we calculated the color of every points based on its barycentric coordinate.
+		</p>
+		<img src="image/hw1_task4_7.png" alt="test7">
 		<h2>
 			Task5:
 		</h2>
