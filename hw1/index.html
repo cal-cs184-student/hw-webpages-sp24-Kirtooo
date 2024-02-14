@@ -110,12 +110,11 @@
 
 
 		
-		<p>Pixel Sampling: This technique samples the texture at different locations within each pixel to achieve a final color. The simplest form is point sampling, which samples at a single point and is very fast but can lead to aliasing. Supersampling, which takes multiple samples within each pixel, provides better antialiasing but at the cost of more memory and slower performance due to the increased number of texture lookups.
+		<p>Pixel Sampling: This technique samples the texture at different locations within each pixel to achieve a final color. The simplest form is point sampling, which samples at a single point and is very fast but can lead to aliasing. Supersampling, which takes multiple samples within each pixel, provides better antialiasing but at the cost of more memory and slower performance due to the increased number of texture lookups. </p>
 
-		   Level Sampling (Mipmapping): This technique uses different levels of precomputed, down-scaled textures (mipmaps). Nearest level sampling chooses the closest mipmap level based on the distance from the viewer to the object, while linear level sampling interpolates between two mipmap levels. Mipmapping improves rendering speed because it uses appropriately scaled textures that minimize texture cache misses and reduces aliasing by using lower-resolution textures for distant objects. However, it requires additional memory to store the mipmap chain.
+		<p>Level Sampling (Mipmapping): This technique uses different levels of precomputed, down-scaled textures (mipmaps). Nearest level sampling chooses the closest mipmap level based on the distance from the viewer to the object, while linear level sampling interpolates between two mipmap levels. Mipmapping improves rendering speed because it uses appropriately scaled textures that minimize texture cache misses and reduces aliasing by using lower-resolution textures for distant objects. However, it requires additional memory to store the mipmap chain.</p>
 
-		   Number of Samples per Pixel: This refers to how many samples are taken within each pixel to compute the final color. A higher number of samples per pixel generally increases the quality of antialiasing, providing a smoother and more realistic image. However, it comes with significant performance costs as it requires more computa
-		</p>
+		<p>Number of Samples per Pixel: This refers to how many samples are taken within each pixel to compute the final color. A higher number of samples per pixel generally increases the quality of antialiasing, providing a smoother and more realistic image. However, it comes with significant performance costs as it requires more computa</p>
 
 		<div style="display: flex; justify-content: space-around; align-items: flex-start; flex-wrap: wrap;">
 		  <figure style="max-width: 40%; text-align: center;">
