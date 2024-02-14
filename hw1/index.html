@@ -99,12 +99,43 @@
 		outputs a sharp graph, whereas bilinear sampling with sample rate 1 offers a smooth transition between pixels on the graph.
 		However, when sample rate is high, the difference is minor.</p>
 		
-		<h2>
-			Task6:
-			<p>Level sampling is a technique used in texture mapping that selects the appropriate level of detail for a texture based on the distance of a polygon from the viewer or the angle 
-				at which it is viewed. This technique is part of a larger process known as mipmapping, where multiple pre-calculated, reduced-resolution versions of the texture are stored.</p>
+		<h2>Task6:</h2>
+		<p>Level sampling is a technique used in texture mapping that selects the appropriate level of detail for a texture
+		   This technique is part of a larger process known as mipmapping, where multiple pre-calculated, reduced-resolution versions of the texture are stored.
+
+		   As for implementation, we first calculated Calculate the uv barycentric coordinates of (x,y), (x+1,y), and (x,y+1).
+		   We then interpolated the differentials for the texture coordinates and calculated du/dx, dv/dx, du/dy, and dv/dy.
+		   Last, we followed the formula on lecture slides to calculate D from L.
+		</p>
+
+		<div style="display: flex; justify-content: space-around; align-items: flex-start; flex-wrap: wrap;">
+		  <figure style="max-width: 40%; text-align: center;">
+		    <img src="image/Lzero_Pnearest.png" alt="Lzero_Pnearest" style="width: 100%; height: auto;">
+		    <figcaption>L_zero, P_nearest</figcaption>
+		  </figure>
+		  <figure style="max-width: 40%; text-align: center;">
+		    <img src="image/Lzero_Plinear.png" alt="Lzero_Plinear.png" style="width: 100%; height: auto;">
+		    <figcaption>L_zero, P_bilinear</figcaption>
+		  </figure>
+		  <figure style="max-width: 40%; text-align: center;">
+		    <img src="image/Lnearest_Pnearest.png" alt="Lnearest_Pnearest.png" style="width: 100%; height: auto;">
+		    <figcaption>L_nearest, P_nearest</figcaption>
+		  </figure>
+		  <figure style="max-width: 40%; text-align: center;">
+		    <img src="image/Lnearest_Plinear.png" alt="Lnearest_Plinear.png" style="width: 100%; height: auto;">
+		    <figcaption>L_nearest, P_bilinear</figcaption>
+		  </figure>
+		  <figure style="max-width: 40%; text-align: center;">
+		    <img src="image/Llinear_Pnearest.png" alt="Llinear_Pnearest.png" style="width: 100%; height: auto;">
+		    <figcaption>L_bilinear, P_nearest</figcaption>
+		  </figure>
+		  <figure style="max-width: 40%; text-align: center;">
+		    <img src="image/Llinear_Plinear.png" alt="Llinear_Plinear.png" style="width: 100%; height: auto;">
+		    <figcaption>L_bilinear, P_bilinear</figcaption>
+		  </figure>
+		</div>
 			
-		</h2>
+		
 	</body>
 	
 </html>
