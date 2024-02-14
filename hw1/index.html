@@ -67,12 +67,83 @@
 			The closer the point is towerds a vertices, we can see that point has a more simalar color to that vertice. This is becasue we calculated the color of every points based on its barycentric coordinate.
 		</p>
 		<img src="image/hw1_task4_7.png" alt="test7">
-		<h2>
-			Task5:
-		</h2>
-		<h2>
-			Task6:
-		</h2>
+		<h2>Task5:</h2>
+		<p>Pixel sampling is the process of selecting a color value for a pixel based on a texture map. 
+		         As for implementation, we first calculate the Barycentric coordinates α, β, and γ given three vertices of a triangle and a point within it. If the point falls outside the triangle, there's no need
+			 to consider it. 
+			 We then interpolate texture coordinates of the point using barycentric coordinates calculated previously and the given size of the texture space.
+				
+		         Nearest neighbor sampling is when a texture is mapped onto a surface, the color of the closest texel (texture pixel) to the sample point is used.
+		         Bilinear sampling works by taking the closest four texels that surround the sample point, and then performs a linear interpolation between them to calculate the final color.
+		</p>
+		<div style="display: flex; justify-content: space-around; align-items: flex-start; flex-wrap: wrap;">
+		  <figure style="max-width: 40%; text-align: center;">
+		    <img src="image/nearest_1.png" alt="Nearest Sampling with Sample Rate = 1" style="width: 100%; height: auto;">
+		    <figcaption>Nearest Sampling with Sample Rate = 1</figcaption>
+		  </figure>
+		  <figure style="max-width: 40%; text-align: center;">
+		    <img src="image/nearest_16.png" alt="Nearest Sampling with Sample Rate = 16" style="width: 100%; height: auto;">
+		    <figcaption>Nearest Sampling with Sample Rate = 16</figcaption>
+		  </figure>
+		  <figure style="max-width: 40%; text-align: center;">
+		    <img src="image/bilinear_1.png" alt="Bilinear Sampling with Sample Rate = 1" style="width: 100%; height: auto;">
+		    <figcaption>Bilinear Sampling with Sample Rate = 1</figcaption>
+		  </figure>
+		  <figure style="max-width: 40%; text-align: center;">
+		    <img src="image/bilinear_16.png" alt="Bilinear Sampling with Sample Rate = 16" style="width: 100%; height: auto;">
+		    <figcaption>Bilinear Sampling with Sample Rate = 16</figcaption>
+		  </figure>
+		</div>
+
+		<p>The difference between the two sampling methods is bigger when sampling rate is low. Nearest sampling with sample rate 1 
+		outputs a sharp graph, whereas bilinear sampling with sample rate 1 offers a smooth transition between pixels on the graph.
+		However, when sample rate is high, the difference is minor.</p>
+		
+		<h2>Task6:</h2>
+		<p>Level sampling is a technique used in texture mapping that selects the appropriate level of detail for a texture
+		   This technique is part of a larger process known as mipmapping, where multiple pre-calculated, reduced-resolution versions of the texture are stored.
+
+		   As for implementation, we first calculated Calculate the uv barycentric coordinates of (x,y), (x+1,y), and (x,y+1).
+		   We then interpolated the differentials for the texture coordinates and calculated du/dx, dv/dx, du/dy, and dv/dy.
+		   Last, we followed the formula on lecture slides to calculate D from L.
+		</p>
+
+
+		
+		<p>Pixel Sampling: This technique samples the texture at different locations within each pixel to achieve a final color. The simplest form is point sampling, which samples at a single point and is very fast but can lead to aliasing. Supersampling, which takes multiple samples within each pixel, provides better antialiasing but at the cost of more memory and slower performance due to the increased number of texture lookups. </p>
+
+		<p>Level Sampling (Mipmapping): This technique uses different levels of precomputed, down-scaled textures (mipmaps). Nearest level sampling chooses the closest mipmap level based on the distance from the viewer to the object, while linear level sampling interpolates between two mipmap levels. Mipmapping improves rendering speed because it uses appropriately scaled textures that minimize texture cache misses and reduces aliasing by using lower-resolution textures for distant objects. However, it requires additional memory to store the mipmap chain.</p>
+
+		<p>Number of Samples per Pixel: This refers to how many samples are taken within each pixel to compute the final color. A higher number of samples per pixel generally increases the quality of antialiasing, providing a smoother and more realistic image. However, it comes with significant performance costs as it requires more computa</p>
+
+		<div style="display: flex; justify-content: space-around; align-items: flex-start; flex-wrap: wrap;">
+		  <figure style="max-width: 40%; text-align: center;">
+		    <img src="image/Lzero_Pnearest.png" alt="Lzero_Pnearest" style="width: 100%; height: auto;">
+		    <figcaption>L_zero, P_nearest</figcaption>
+		  </figure>
+		  <figure style="max-width: 40%; text-align: center;">
+		    <img src="image/Lzero_Plinear.png" alt="Lzero_Plinear.png" style="width: 100%; height: auto;">
+		    <figcaption>L_zero, P_bilinear</figcaption>
+		  </figure>
+		  <figure style="max-width: 40%; text-align: center;">
+		    <img src="image/Lnearest_Pnearest.png" alt="Lnearest_Pnearest.png" style="width: 100%; height: auto;">
+		    <figcaption>L_nearest, P_nearest</figcaption>
+		  </figure>
+		  <figure style="max-width: 40%; text-align: center;">
+		    <img src="image/Lnearest_Plinear.png" alt="Lnearest_Plinear.png" style="width: 100%; height: auto;">
+		    <figcaption>L_nearest, P_bilinear</figcaption>
+		  </figure>
+		  <figure style="max-width: 40%; text-align: center;">
+		    <img src="image/Llinear_Pnearest.png" alt="Llinear_Pnearest.png" style="width: 100%; height: auto;">
+		    <figcaption>L_bilinear, P_nearest</figcaption>
+		  </figure>
+		  <figure style="max-width: 40%; text-align: center;">
+		    <img src="image/Llinear_Plinear.png" alt="Llinear_Plinear.png" style="width: 100%; height: auto;">
+		    <figcaption>L_bilinear, P_bilinear</figcaption>
+		  </figure>
+		</div>
+			
+		
 	</body>
 	
 </html>
