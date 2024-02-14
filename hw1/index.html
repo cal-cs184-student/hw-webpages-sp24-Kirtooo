@@ -67,23 +67,20 @@
 			The closer the point is towerds a vertices, we can see that point has a more simalar color to that vertice. This is becasue we calculated the color of every points based on its barycentric coordinate.
 		</p>
 		<img src="image/hw1_task4_7.png" alt="test7">
-		<h2>
-			Task5:
-			<p>
-				Pixel sampling is the process of selecting a color value for a pixel based on a texture map. 
-				As for implementation, we first calculate the Barycentric coordinates α, β, and γ given three vertices of a triangle and a point within it. If the point falls outside the triangle, there's no need
-				to consider it. 
-				We then interpolate texture coordinates of the point using barycentric coordinates calculated previously and the given size of the texture space.
+		<h2>Task5:</h2>
+		<p>Pixel sampling is the process of selecting a color value for a pixel based on a texture map. 
+		         As for implementation, we first calculate the Barycentric coordinates α, β, and γ given three vertices of a triangle and a point within it. If the point falls outside the triangle, there's no need
+			 to consider it. 
+			 We then interpolate texture coordinates of the point using barycentric coordinates calculated previously and the given size of the texture space.
 				
-				Nearest neighbor sampling is when a texture is mapped onto a surface, the color of the closest texel (texture pixel) to the sample point is used.
-				Bilinear sampling works by taking the closest four texels that surround the sample point, and then performs a linear interpolation between them to calculate the final color.
-				<img src="image/nearest_1.png">
-				<img src="image/nearest_16.png">
-				<img src="image/bilinear_1.png">
-				<img src="image/bilinear_16.png">
-				
-			</p>
-		</h2>
+		         Nearest neighbor sampling is when a texture is mapped onto a surface, the color of the closest texel (texture pixel) to the sample point is used.
+		         Bilinear sampling works by taking the closest four texels that surround the sample point, and then performs a linear interpolation between them to calculate the final color.
+		</p>
+		<img src="image/nearest_1.png">
+		<img src="image/nearest_16.png">
+		<img src="image/bilinear_1.png">
+		<img src="image/bilinear_16.png">
+		
 		<h2>
 			Task6:
 		</h2>
