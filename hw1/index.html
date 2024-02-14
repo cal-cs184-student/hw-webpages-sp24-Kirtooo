@@ -69,7 +69,16 @@
 		<img src="image/hw1_task4_7.png" alt="test7">
 		<h2>
 			Task5:
-			<p></p>
+			<p>
+				Pixel sampling is the process of selecting a color value for a pixel based on a texture map. 
+				As for implementation, we first calculate the Barycentric coordinates α, β, and γ given three vertices of a triangle and a point within it. If the point falls outside the triangle, there's no need
+				to consider it. 
+				We then interpolate texture coordinates of the point using barycentric coordinates calculated previously and the given size of the texture space.
+				
+				Nearest neighbor sampling is when a texture is mapped onto a surface, the color of the closest texel (texture pixel) to the sample point is used.
+				Bilinear sampling works by taking the closest four texels that surround the sample point, and then performs a linear interpolation between them to calculate the final color.
+				
+			</p>
 		</h2>
 		<h2>
 			Task6:
