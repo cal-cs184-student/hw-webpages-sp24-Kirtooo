@@ -58,8 +58,24 @@
 			Then according to what the triangle mesh should look like after flipping in the screenshot, I reassigned edges, vertices, edges, and faces. 
 			I think one interesting thing is that the pointers should be assigned carefully. I encountered a bug related to missing triangle when implementing, 
 			and it was due to incorrect pointer assignment. So I think the debugging trick I found most useful was simply being careful with pointers.
-
 		</p>
+		<img src="image/task4.png">
+		<img src="image/before.png">
+		<img src="image/flip1.png">
+		<img src="image/flip2.png">
+		<img src="image/flip3.png">
+		<h2>Task5:</h2>
+		<p>I implemented edge split operation following a similar approach to task 4. 
+			I first obtained all of the half edges, vertices, edges, and faces before flipping. 
+			Then I added one new vertex m, three new edges, and six new half edges resulting from the edge splitting operation. 
+			Similar to task 4, I reassign pointers if needed. 
+			My implementation does not involve deleting elements from the origin triangle mesh in order to avoid segmentation faults due to problematic pointer removals. 
+			My debugging approach is similar to that I mentioned in task 4. 
+		</p>
+		<img src="image/split1.png">
+		<img src="image/split2.png">
+		<img src="image/split_and_flip1.png">
+		<img src="image/split_and_flip2.png">
 			
 		
 	</body>
