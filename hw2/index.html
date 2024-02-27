@@ -32,11 +32,17 @@
 		<img src="image/hw2_part1_7.png">
 		<p>Bezier curve after moving control points and change t:</p>
 		<img src="image/hw2_part1_8.png">
-		<!-- <h2>Task2: </h2>
+		<h2>Task2: </h2>
 		<p>
-			
+			Applying De Casteljau's algorithm to evaluate Bezier surface includes multiple steps. 
+			Having the input grid and parameters <code>u</code> and <code>v</code>, we first creates Bezier curve on each row of the input grid with parameter <code>u</code>.
+			By doing so, we will have a point for every bezier curve created and we put all of them in a vector and evaluate with parameter <code>v</code>.
+			To implement this, we used <code>evaluateStep</code> and <code>evaluate1D</code> as helper function for <code>evaluate</code>.
+			<code>evaluateStep</code> is basically same as the function in task1, and in <code>evaluate1D</code> we recursively calls <code>evaluateStep</code> to generate one point for the Bezier curve.
+			Lastly, in <code>evaluate</code>, we calls <code>evaluate1D</code> for every row and calls it again for the vector that contains all the bezier curve.
 		</p>
-		<style>
+		<img src="image/hw2_part2_1.png">
+		<!-- <style>
 			.column {
 				float: left;
 				width: 30.33%;
