@@ -60,10 +60,25 @@
 			and it was due to incorrect pointer assignment. So I think the debugging trick I found most useful was simply being careful with pointers.
 		</p>
 		<img src="image/task4.png">
-		<img src="image/before.png">
-		<img src="image/flip1.png">
-		<img src="image/flip2.png">
-		<img src="image/flip3.png">
+		<div style="display: flex; justify-content: space-around; align-items: flex-start; flex-wrap: wrap;">
+		  <figure style="max-width: 40%; text-align: center;">
+		    <img src="image/image/before.png" alt="Nearest Sampling with Sample Rate = 1" style="width: 100%; height: auto;">
+		    <figcaption>Nearest Sampling with Sample Rate = 1</figcaption>
+		  </figure>
+		  <figure style="max-width: 40%; text-align: center;">
+		    <img src="image/flip1.png" alt="Nearest Sampling with Sample Rate = 16" style="width: 100%; height: auto;">
+		    <figcaption>Nearest Sampling with Sample Rate = 16</figcaption>
+		  </figure>
+		  <figure style="max-width: 40%; text-align: center;">
+		    <img src="image/flip2.png" alt="Bilinear Sampling with Sample Rate = 1" style="width: 100%; height: auto;">
+		    <figcaption>Bilinear Sampling with Sample Rate = 1</figcaption>
+		  </figure>
+		  <figure style="max-width: 40%; text-align: center;">
+		    <img src="image/flip3.png" alt="Bilinear Sampling with Sample Rate = 16" style="width: 100%; height: auto;">
+		    <figcaption>Bilinear Sampling with Sample Rate = 16</figcaption>
+		  </figure>
+		</div>
+
 		<h2>Task5:</h2>
 		<p>I implemented edge split operation following a similar approach to task 4. 
 			I first obtained all of the half edges, vertices, edges, and faces before flipping. 
