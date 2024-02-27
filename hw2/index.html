@@ -80,7 +80,8 @@
 		</div>
 
 		<h2>Task5:</h2>
-		<p>I implemented edge split operation following a similar approach to task 4. 
+		<p>
+			I implemented edge split operation following a similar approach to task 4. 
 			I first obtained all of the half edges, vertices, edges, and faces before flipping. 
 			Then I added one new vertex m, three new edges, and six new half edges resulting from the edge splitting operation. 
 			Similar to task 4, I reassign pointers if needed. 
@@ -105,7 +106,35 @@
 		    <figcaption>Flip after Split</figcaption>
 		  </figure>
 		</div>
+		<h2>Task6:</h2>
+		<p>
+			I implemented the loop subdivision following the instructions on the spec and comments in the upsample function. 
+		   	I first computed new positions for all the vertices in the input mesh, using the Loop subdivision rule (u=3/16 if n=3, 3/(8n) otherwise), and stored them in Vertex::newPosition. 
+		   	For step 2, I computed the updated positions for the midpoints of edges (3/8 * (A + B) + 1/8 * (C + D)) and stored them in Edge::newPosition. Then I created a list to track original edges because the mesh.edges list will be modified in the splitting process.
+			For step 3, I splitted every edge in the mesh and update the new vertices' positions, marking the “isNew” attribute of new edges created in this process as true. 
+			For step 4, Flip any new edge that connects an old and new vertex. 
+			For step 5, I copied the new vertex positions into the Vertex::position and reset “isNew” for the next iteration of subdivision. 
+			I did not encounter any bugs when implementing task 6, so I cannot really say which debugging trick I found most useful. 
 			
+			Sharp corners in the original mesh tend to become smoother and less pronounced with each iteration of Loop subdivision. This is because the algorithm averages the positions of the vertices, which naturally rounds off sharp angles. 
+			Similar to sharp corners, sharp edges also become smoother with Loop subdivision. The sharpness of an edge is reduced with each subdivision step, as new vertices are introduced along the edge and existing vertices are moved to average positions. 
+			To reduce the smoothing effect on sharp features, one could pre-split or insert extra edges around the areas that are intended to remain sharp before applying the subdivision. This technique can help in maintaining some of the mesh's original sharpness by creating a localized increase in vertex density, which affects the averaging calculations during subdivision.
+			I can pre-process the cube with edge flips and splits so that the cube subdivides symmetrically by splitting the single edge on every face of the cube. 
+		</p>
+		<div style="display: flex; justify-content: space-around; align-items: flex-start; flex-wrap: wrap;">
+		  <figure style="max-width: 30%; text-align: center;">
+		    <img src="image/cube.png" style="width: 100%; height: auto;">
+		    <figcaption>Cube after Pre-processed</figcaption>
+		  </figure>
+		  <figure style="max-width: 30%; text-align: center;">
+		    <img src="image/cube_preprocessed.png" style="width: 100%; height: auto;">
+		    <figcaption>Upsample Pre-processed Cube</figcaption>
+		  </figure>
+		<figure style="max-width: 30%; text-align: center;">
+		    <img src="image/teapot_smooth.png" style="width: 100%; height: auto;">
+		    <figcaption>Upsample Teapot</figcaption>
+		  </figure>
+		</div>
 		
 	</body>
 	
