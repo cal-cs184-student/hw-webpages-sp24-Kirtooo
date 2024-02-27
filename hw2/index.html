@@ -42,35 +42,17 @@
 			Lastly, in <code>evaluate</code>, we calls <code>evaluate1D</code> for every row and calls it again for the vector that contains all the bezier curve.
 		</p>
 		<img src="image/hw2_part2_1.png">
-		<!-- <style>
-			.column {
-				float: left;
-				width: 30.33%;
-				padding: 5px;
-			  }
-			  
-			  /* Clear floats after image containers */
-			  .row::after {
-				content: "";
-				clear: both;
-				display: table;
-			  }
-		</style>
-		<div class="row">
-			<div class="column">
-			  <img src="image/task2_rate1.png" alt="sample rate = 1" style="width:100%">
-			</div>
-			<div class="column">
-			  <img src="image/task2_rate4.png" alt="sample rate = 4" style="width:100%">
-			</div>
-			<div class="column">
-			  <img src="image/task2_rate16.png" alt="sample rate = 16" style="width:100%">
-			</div>
-		</div>
 		<h2>Task3:</h2>
-		<p>We tried to make the cubeman waving hands.</p>
-		<img src="image/hw1_task3.png" alt = "waving cubeman">
-		<h2>Task4:</h2>
+		<p>
+			Since we were given the vertex, we first get its halfedge h. Then, we loop around all the faces of this vertax by calling <code>h->twin()->next()</code> until we reach the halfedge again.
+			Within each iteration, we were able to get the two vector of the other two edges in triangle by calling <code>h->next()->vertex()->position - h->vertex()->position;</code> and <code>h->next()->next()->vertex()->position - h->vertex()->position</code>.
+			Then, we take the cross product of the two edges to get the normal vector to current face and added to the <code>sum</code> vector.
+			By doing so, we can get the sum of all normal vectors to triangles that this vertax is in.
+			Lastly, we normalize the <code>sum</code> vector and returns.
+		</p>
+		<img src="image/hw2_part3_1.png">
+		<img src="image/hw2_part3_2.png">
+		<!-- <h2>Task4:</h2>
 		<img src="image/task4_triangle.png" alt = "simple triangle">
 		<p>From my understanding, barycentric coordinates is that we can represent each points in a triangle by the relationship to the three vertices.
 			As we can see from the picture above, all vertices of the triangle have different color, whereas points inside the triangle are a mix of those three colors.
