@@ -11,7 +11,7 @@
 	<body>
 		<h2>Overview:</h2>
 		<p>
-			
+			In this project, we implemented Bezier curve and surface, and triangle mesh methods. We have a better understanding of those concepts and really enjoyed the homework.
 		</p>
 		<h2>Task1: </h2>
 		<p>
@@ -119,7 +119,7 @@
 			Sharp corners in the original mesh tend to become smoother and less pronounced with each iteration of Loop subdivision. This is because the algorithm averages the positions of the vertices, which naturally rounds off sharp angles. 
 			Similar to sharp corners, sharp edges also become smoother with Loop subdivision. The sharpness of an edge is reduced with each subdivision step, as new vertices are introduced along the edge and existing vertices are moved to average positions. 
 			To reduce the smoothing effect on sharp features, one could pre-split or insert extra edges around the areas that are intended to remain sharp before applying the subdivision. This technique can help in maintaining some of the mesh's original sharpness by creating a localized increase in vertex density, which affects the averaging calculations during subdivision.
-			I can pre-process the cube with edge flips and splits so that the cube subdivides symmetrically by splitting the single edge on every face of the cube. 
+			Without Pre-process, we can see that the triangles on the same face of the cube looks slightly asymmetric and the cube also looks assymetric. We tried to split all the diagnal edge on the cube to Pre-process the cube. After doing so, we can see that the cube looks more symmetric.
 		</p>
 		<div style="display: flex; justify-content: space-around; align-items: flex-start; flex-wrap: wrap;">
 		  <figure style="max-width: 40%; text-align: center;">
