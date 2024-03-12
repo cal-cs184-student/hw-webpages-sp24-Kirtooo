@@ -1,7 +1,172 @@
 <html>
 	<head>
+		Homework 3: Pathtracer
 	</head>
+	<p>
+		Leo Yuan & David Long
+	</p>
+	<p>
+		link: https://cal-cs184-student.github.io/hw-webpages-sp24-Kirtooo/
+	</p>
 	<body>
-		Homework 3 index.html here
+		<h2>Overview:</h2>
+		<p>
+			In this project, we implemented Bezier curve and surface, and triangle mesh methods. We have a better understanding of those concepts and really enjoyed the homework.
+		</p>
+		<h2>Part1: </h2>
+		<h3>ray generation: </h3>
+		<p>
+			In this part, we are converting 2-D image coordinates into 3-D camera space. Specifically, we have the sensor on Z = -1 plane and using hFov and vFov as view angle along X and Y axis.
+			Having those information, we can then calculate the corresponding coordinates of the input (x, y) on the camera space. 
+			Afterwards, we normalize this direction vector of the ray and use the provided <code>c2w</code> matrix to transform the ray to world space.
+			Lastly, as mentioned in spec, we set the <code>min_t</code> and <code>max_t</code> parameter of the ray.
+		</p>
+		<h3>rendering pipeline: </h3>
+		<p>
+			We use <code>ns_aa</code> as number of samples for a pixel to estimate the integral of radiance. 
+			Specifically, we use each of the normalized sample points to generate a ray and estimate the radiance for the ray and 
+			then get the integral by averaging those radiance of ray. Lastly, we update the sample buffer.
+		</p>
+		<h3>triangle intersection</h3>
+		<p>
+			For this part, we used Möller–Trumbore intersection algorithm. Will add more tmrw.
+		</p>
+		<style>
+			.column {
+				float: left;
+				width: 30.33%;
+				padding: 5px;
+			  }
+			  
+			  /* Clear floats after image containers */
+			  .row::after {
+				content: "";
+				clear: both;
+				display: table;
+			  }
+		</style>
+		<div class="row">
+			<div class="column">
+			  <img src="image/CBempty.png" style="width:100%">
+			</div>
+			<div class="column">
+			  <img src="image/CBspheres.png"  style="width:100%">
+			</div>
+			<div class="column">
+			  <img src="image/CBcoil.png" style="width:100%">
+			</div>
+		</div>
+
+
+<!-- 
+		<h2>Task2: </h2>
+		<p>
+			Applying De Casteljau's algorithm to evaluate Bezier surface includes multiple steps. 
+			Having the input grid and parameters <code>u</code> and <code>v</code>, we first creates Bezier curve on each row of the input grid with parameter <code>u</code>.
+			By doing so, we will have a point for every bezier curve created and we put all of them in a vector and evaluate with parameter <code>v</code>.
+			To implement this, we used <code>evaluateStep</code> and <code>evaluate1D</code> as helper function for <code>evaluate</code>.
+			<code>evaluateStep</code> is basically same as the function in task1, and in <code>evaluate1D</code> we recursively calls <code>evaluateStep</code> to generate one point for the Bezier curve.
+			Lastly, in <code>evaluate</code>, we calls <code>evaluate1D</code> for every row and calls it again for the vector that contains all the bezier curve.
+		</p>
+		<img src="image/hw2_part2_1.png">
+		<h2>Task3:</h2>
+		<p>
+			Since we were given the vertex, we first get its halfedge h. Then, we loop around all the faces of this vertax by calling <code>h->twin()->next()</code> until we reach the halfedge again.
+			Within each iteration, we were able to get the two vector of the other two edges in triangle by calling <code>h->next()->vertex()->position - h->vertex()->position;</code> and <code>h->next()->next()->vertex()->position - h->vertex()->position</code>.
+			Then, we take the cross product of the two edges to get the normal vector to current face and added to the <code>sum</code> vector.
+			By doing so, we can get the sum of all normal vectors to triangles that this vertax is in.
+			Lastly, we normalize the <code>sum</code> vector and returns.
+		</p>
+		<img src="image/hw2_part3_1.png">
+		<img src="image/hw2_part3_2.png">
+		<h2>Task4:</h2>
+		<p>
+			I implemented edge flip operation based on the screenshot below. I first obtained all of the half edges, vertices, edges, and faces before flipping. 
+			Then according to what the triangle mesh should look like after flipping in the screenshot, I reassigned edges, vertices, edges, and faces. 
+			I think one interesting thing is that the pointers should be assigned carefully. I encountered a bug related to missing triangle when implementing, 
+			and it was due to incorrect pointer assignment. So I think the debugging trick I found most useful was simply being careful with pointers.
+		</p>
+		<img src="image/task4.png">
+		<div style="display: flex; justify-content: space-around; align-items: flex-start; flex-wrap: wrap;">
+		  <figure style="max-width: 40%; text-align: center;">
+		    <img src="image/before.png" style="width: 100%; height: auto;">
+		    <figcaption>Before Flip</figcaption>
+		  </figure>
+		  <figure style="max-width: 40%; text-align: center;">
+		    <img src="image/flip1.png" style="width: 100%; height: auto;">
+		    <figcaption>Flip an edge once</figcaption>
+		  </figure>
+		  <figure style="max-width: 40%; text-align: center;">
+		    <img src="image/flip2.png" style="width: 100%; height: auto;">
+		    <figcaption>Flip its Neighboring Edge</figcaption>
+		  </figure>
+		  <figure style="max-width: 40%; text-align: center;">
+		    <img src="image/flip3.png" style="width: 100%; height: auto;">
+		    <figcaption>Flip Multiple Edges</figcaption>
+		  </figure>
+		</div>
+
+		<h2>Task5:</h2>
+		<p>
+			I implemented edge split operation following a similar approach to task 4. 
+			I first obtained all of the half edges, vertices, edges, and faces before flipping. 
+			Then I added one new vertex m, three new edges, and six new half edges resulting from the edge splitting operation. 
+			Similar to task 4, I reassign pointers if needed. 
+			My implementation does not involve deleting elements from the origin triangle mesh in order to avoid segmentation faults due to problematic pointer removals. 
+			My debugging approach is similar to that I mentioned in task 4. 
+		</p>
+		<div style="display: flex; justify-content: space-around; align-items: flex-start; flex-wrap: wrap;">
+		  <figure style="max-width: 40%; text-align: center;">
+		    <img src="image/split1.png" style="width: 100%; height: auto;">
+		    <figcaption>Split an Edge</figcaption>
+		  </figure>
+		  <figure style="max-width: 40%; text-align: center;">
+		    <img src="image/split2.png" style="width: 100%; height: auto;">
+		    <figcaption>Split its Neighboring Edge</figcaption>
+		  </figure>
+		  <figure style="max-width: 40%; text-align: center;">
+		    <img src="image/split_and_flip1.png" style="width: 100%; height: auto;">
+		    <figcaption>Flip after Split</figcaption>
+		  </figure>
+		  <figure style="max-width: 40%; text-align: center;">
+		    <img src="image/split_and_flip2.png" style="width: 100%; height: auto;">
+		    <figcaption>Flip after Split</figcaption>
+		  </figure>
+		</div>
+		<h2>Task6:</h2>
+		<p>
+			I implemented the loop subdivision following the instructions on the spec and comments in the upsample function. 
+		   	I first computed new positions for all the vertices in the input mesh, using the Loop subdivision rule (u=3/16 if n=3, 3/(8n) otherwise), and stored them in Vertex::newPosition. 
+		   	For step 2, I computed the updated positions for the midpoints of edges (3/8 * (A + B) + 1/8 * (C + D)) and stored them in Edge::newPosition. Then I created a list to track original edges because the mesh.edges list will be modified in the splitting process.
+			For step 3, I splitted every edge in the mesh and update the new vertices' positions, marking the “isNew” attribute of new edges created in this process as true. 
+			For step 4, Flip any new edge that connects an old and new vertex. 
+			For step 5, I copied the new vertex positions into the Vertex::position and reset “isNew” for the next iteration of subdivision. 
+			I did not encounter any bugs when implementing task 6, so I cannot really say which debugging trick I found most useful. 
+			
+			Sharp corners in the original mesh tend to become smoother and less pronounced with each iteration of Loop subdivision. This is because the algorithm averages the positions of the vertices, which naturally rounds off sharp angles. 
+			Similar to sharp corners, sharp edges also become smoother with Loop subdivision. The sharpness of an edge is reduced with each subdivision step, as new vertices are introduced along the edge and existing vertices are moved to average positions. 
+			To reduce the smoothing effect on sharp features, one could pre-split or insert extra edges around the areas that are intended to remain sharp before applying the subdivision. This technique can help in maintaining some of the mesh's original sharpness by creating a localized increase in vertex density, which affects the averaging calculations during subdivision.
+			Without Pre-process, we can see that the triangles on the same face of the cube looks slightly asymmetric and the cube also looks assymetric. We tried to split all the diagnal edge on the cube to Pre-process the cube. After doing so, we can see that the cube looks more symmetric.
+		</p>
+		<div style="display: flex; justify-content: space-around; align-items: flex-start; flex-wrap: wrap;">
+		  <figure style="max-width: 40%; text-align: center;">
+		    <img src="image/cube.png" style="width: 100%; height: auto;">
+		    <figcaption>Cube after Pre-processed</figcaption>
+		  </figure>
+		  <figure style="max-width: 40%; text-align: center;">
+		    <img src="image/cube_preprocessed.png" style="width: 100%; height: auto;">
+		    <figcaption>Upsample Pre-processed Cube</figcaption>
+		  </figure>
+		  <figure style="max-width: 40%; text-align: center;">
+		    <img src="image/before.png" style="width: 100%; height: auto;">
+		    <figcaption>Teapot beofore Upsample</figcaption>
+		  </figure>
+		  <figure style="max-width: 40%; text-align: center;">
+		    <img src="image/teapot_smooth.png" style="width: 100%; height: auto;">
+		    <figcaption>Teapot after Upsample</figcaption>
+		  </figure>
+		</div> -->
+		
 	</body>
+	
 </html>
