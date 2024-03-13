@@ -62,28 +62,47 @@
 		</div>
 
 
-<!-- 
-		<h2>Task2: </h2>
+
+		<h2>Part2: </h2>
 		<p>
-			Applying De Casteljau's algorithm to evaluate Bezier surface includes multiple steps. 
-			Having the input grid and parameters <code>u</code> and <code>v</code>, we first creates Bezier curve on each row of the input grid with parameter <code>u</code>.
-			By doing so, we will have a point for every bezier curve created and we put all of them in a vector and evaluate with parameter <code>v</code>.
-			To implement this, we used <code>evaluateStep</code> and <code>evaluate1D</code> as helper function for <code>evaluate</code>.
-			<code>evaluateStep</code> is basically same as the function in task1, and in <code>evaluate1D</code> we recursively calls <code>evaluateStep</code> to generate one point for the Bezier curve.
-			Lastly, in <code>evaluate</code>, we calls <code>evaluate1D</code> for every row and calls it again for the vector that contains all the bezier curve.
+			The first part of this task is to construct the BVH.
+			In this part, we first iterate through all the primitives to generate the bounding box that contains all of the primitives.
+			We then check for the number of primitives and create a new <code>BVHNode</code> if the number of primitives is smaller than <code>max_leaf_size</code>.
+			If we have more primitives than max_leaf_size, we want to recursively construct the tree.
+			Specifically, we pick the longest distance and chose the heuristic that split on median and we get the median by sorting the primitives based on their centroid and the chosen axis.
 		</p>
-		<img src="image/hw2_part2_1.png">
-		<h2>Task3:</h2>
 		<p>
-			Since we were given the vertex, we first get its halfedge h. Then, we loop around all the faces of this vertax by calling <code>h->twin()->next()</code> until we reach the halfedge again.
-			Within each iteration, we were able to get the two vector of the other two edges in triangle by calling <code>h->next()->vertex()->position - h->vertex()->position;</code> and <code>h->next()->next()->vertex()->position - h->vertex()->position</code>.
-			Then, we take the cross product of the two edges to get the normal vector to current face and added to the <code>sum</code> vector.
-			By doing so, we can get the sum of all normal vectors to triangles that this vertax is in.
-			Lastly, we normalize the <code>sum</code> vector and returns.
+			The second part of this task is to check if the ray intersect with the bounding box.
+			In this part, we calculated the time of intersection of the ray with each of the x, y, z planes,
+			and we picked the largest <code>t_min</code> and smallest <code>t_max</code> to find the smallest bound.
+			If at a point that the max t_min is greater than min t_max, we return false.
 		</p>
-		<img src="image/hw2_part3_1.png">
-		<img src="image/hw2_part3_2.png">
-		<h2>Task4:</h2>
+		<P>
+			The last part of this task is to check for the intersect of the ray and BVH.
+			To check if the ray has intersection with the node, we first check if the ray is intersect with the bounding box of the node, return false if it doesn't intersects.
+			If the ray intersects with the bounding box and the node is a leaf node, we iterate through all the primitives in the node and return ture if the ray is intersects with any of the primitives in the node.
+			Lastly, if the node is a internal node, we recursively call this function to check for both of its children. 
+			To get the intersection data, we implemented the intersect function with the same idea as has_intersect function but we are calling the intersect funtions on primitives to update the intersection data.
+		</P>
+		<div class="row">
+			<div class="column">
+			  <img src="image/cow.png" style="width:100%">
+			</div>
+			<div class="column">
+			  <img src="image/maxplanck.png"  style="width:100%">
+			</div>
+			<div class="column">
+			  <img src="image/CBlucy.png" style="width:100%">
+			</div>
+		</div>
+		<h3>Compare rendering time</h3>
+		<img src="image/compare.png">
+		<p>
+			By rendering the same file with and without BVH, we can clearly see that BVH acceleration makes the rendering time dramatically faster.
+			This is because that we are testing intersects with every single primitives if we dont use BVH. 
+			With BVH, we are able to first filter out primitives with the bounding box and only testing intersects with the primitives in the leaf node, and this make the rendering process a lot faster.
+		</p>
+		<!-- <h2>Task4:</h2>
 		<p>
 			I implemented edge flip operation based on the screenshot below. I first obtained all of the half edges, vertices, edges, and faces before flipping. 
 			Then according to what the triangle mesh should look like after flipping in the screenshot, I reassigned edges, vertices, edges, and faces. 
