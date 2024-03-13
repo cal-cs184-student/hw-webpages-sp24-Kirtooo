@@ -29,7 +29,11 @@
 		</p>
 		<h3>triangle intersection</h3>
 		<p>
-			For this part, we used Möller–Trumbore intersection algorithm. Will add more tmrw.
+			For this part, we used Möller–Trumbore intersection algorithm. 
+			Specifically, we first checked if the ray is parallel to the triangle by calculating the dot product of one of the edge and the cross product of the other edge and ray.
+			Afterwards, we calculate the barycentric coordinates of the intersection point along the edges of the triangle.
+			We then determined the point is inside the triangle if the barycentric coordinate is in range [0,1].
+			Lastly, we calculate the t vector equal the inverse of determinant dot the second edge of triangle dot the cross product of vector from origin to vertice of the triangle and the first edge of triangle.
 		</p>
 		<style>
 			.column {
