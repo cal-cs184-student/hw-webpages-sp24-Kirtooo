@@ -48,6 +48,12 @@
 				clear: both;
 				display: table;
 			  }
+
+			  .column2 {
+				float: left;
+				width: 40%;
+				padding: 5px;
+			  }
 		</style>
 		<div class="row">
 			<div class="column">
@@ -60,9 +66,6 @@
 			  <img src="image/CBcoil.png" style="width:100%">
 			</div>
 		</div>
-
-
-
 		<h2>Part2: </h2>
 		<p>
 			The first part of this task is to construct the BVH.
@@ -101,6 +104,27 @@
 			By rendering the same file with and without BVH, we can clearly see that BVH acceleration makes the rendering time dramatically faster.
 			This is because that we are testing intersects with every single primitives if we dont use BVH. 
 			With BVH, we are able to first filter out primitives with the bounding box and only testing intersects with the primitives in the leaf node, and this make the rendering process a lot faster.
+		</p>
+		<h2>Part3: </h2>
+		<h3>Direct Lighting with Uniform Hemisphere Sampling</h3>
+		<p>
+			We iterate through number of samples. Then, we calculate wi with <code>hemisphereSampler</code>and world space coordinates of wi. 
+			We then initiates the ray for sampled direction. 
+			Afterwards, we check if the sampled ray intersects with the light source by calling the intersect function we implemented.
+			If there is an intersection, we use the reflection equation to calculate the ourgoing light and add it to the total l_out.
+			Specifically, we since we are doing uniform Hemispher Sampling, we chose p = 2*pi.
+		</p>
+		<div class="row">
+			<div class="column2">
+			  <img src="image/CBbunny_16_8.png" style="width:100%">
+			</div>
+			<div class="column2">
+			  <img src="image/CBbunny_64_32.png"  style="width:100%">
+			</div>
+		</div>
+		<h3>Direct Lighting by Importance Sampling Lights</h3>
+		<p>
+
 		</p>
 		<!-- <h2>Task4:</h2>
 		<p>
