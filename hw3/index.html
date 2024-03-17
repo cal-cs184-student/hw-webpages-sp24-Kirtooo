@@ -111,7 +111,7 @@
 			We iterate through number of samples. Then, we calculate wi with <code>hemisphereSampler</code>and world space coordinates of wi. 
 			We then initiates the ray for sampled direction. 
 			Afterwards, we check if the sampled ray intersects with the light source by calling the intersect function we implemented.
-			If there is an intersection, we use the reflection equation to calculate the ourgoing light and add it to the total l_out.
+			If there is an intersection, we use the reflection equation to calculate the outgoing light and add it to the total l_out.
 			Specifically, we since we are doing uniform Hemispher Sampling, we chose p = 2*pi.
 		</p>
 		<div class="row">
@@ -124,8 +124,48 @@
 		</div>
 		<h3>Direct Lighting by Importance Sampling Lights</h3>
 		<p>
-
+			In this part, the implementation is vary similar to the implementation of the previous task discussed above.
+			We first loop through all the lights in the scene, and get the number of samples. 
+			We set number of samples to loop through to 1 if <code>is_delta_light</code> since there is no need to sample multiple times for a point light source.
+			Then, for each of the sample, we check if there is intersection, if there is intersection, it means the ray is blocked and won't hit the hit point.
+			If the ray is not blocked, we calculate the outgoing light use the same method as pervious task and add to the total L_out.
 		</p>
+		<div class="row">
+			<div class="column2">
+			  <img src="image/bunny_64_32.png" style="width:100%">
+			</div>
+			<div class="column2">
+			  <img src="image/dragon_64_32.png"  style="width:100%">
+			</div>
+		</div>
+		<h3>Commpare noise level</h3>
+		<div style="display: flex; justify-content: space-around; align-items: flex-start; flex-wrap: wrap;">
+			<figure style="max-width: 40%; text-align: center;">
+			  <img src="image/bunny_1_ray.png" alt="Nearest Sampling with Sample Rate = 1" style="width: 100%; height: auto;">
+			  <figcaption>1 ray</figcaption>
+			</figure>
+			<figure style="max-width: 40%; text-align: center;">
+			  <img src="image/bunny_4_ray.png" alt="Nearest Sampling with Sample Rate = 16" style="width: 100%; height: auto;">
+			  <figcaption>4 ray</figcaption>
+			</figure>
+			<figure style="max-width: 40%; text-align: center;">
+			  <img src="image/bunny_16_ray.png" alt="Bilinear Sampling with Sample Rate = 1" style="width: 100%; height: auto;">
+			  <figcaption>16 ray</figcaption>
+			</figure>
+			<figure style="max-width: 40%; text-align: center;">
+			  <img src="image/bunny_64_ray.png" alt="Bilinear Sampling with Sample Rate = 16" style="width: 100%; height: auto;">
+			  <figcaption>64 ray</figcaption>
+			</figure>
+		  </div>
+		  <p>
+			We can see that the noise level is decreasing as we increase the number of light rays, and the shadow gets more natural.
+		  </p>
+		  <h3>Compare the results between uniform hemisphere sampling and lighting sampling</h3>
+		  <p>
+			From the pictures showed above, we can notice that the image generated with lighting sampling is better than uniform hemisphere sampling when we use the same number of light rays and same number of sample per pixel.
+			This is probably because of that uniform hemispher sampling randomly samples all the direction where as importance sampling only sample rays from light source.
+			Moreover, this also makes importance sampling more efficient as we noticed that the rendering time with importance sampling is faster than uniform hemisphere sampling.
+		  </p>
 		<!-- <h2>Task4:</h2>
 		<p>
 			I implemented edge flip operation based on the screenshot below. I first obtained all of the half edges, vertices, edges, and faces before flipping. 
