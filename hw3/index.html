@@ -166,6 +166,17 @@
 			This is probably because of that uniform hemispher sampling randomly samples all the direction where as importance sampling only sample rays from light source.
 			Moreover, this also makes importance sampling more efficient as we noticed that the rendering time with importance sampling is faster than uniform hemisphere sampling.
 		  </p>
+		<h2>Part4: </h2>
+		<h3>indirect lighting function</h3>
+		<p>
+			The main logic of indirect lighting lies within at_least_one_bounce_radiance and est_radiance_global_illumination. 
+			In the former, I used recursion in my approach. There are two base cases: if the depth of the ray is 0, then I do nothing and return the 0 vector as the radiance, and if the depth is 1, then I return the result of one bounce radiance. 
+			With Russian Roulette, I do a coin flip with 1 - terminate probability (0.4). If the result is false, then I terminate the ray and return the radiance. Otherwise, I continue with the recursion. 
+			Then I used the bsdf->sample_f function to get w_in and pdf. Afterwards, I multiplied w_in with the o2w matrix to get the direction of the ray in world space; and I created a new ray with this direction and depth decremented by 1 for the purpose of recursion for next iteration. 
+			Lastly, if there’s intersection of the ray with the aggregate or the coin flip with termination probability returns true, then I compute the indirect radiance by recursively calling at_least_one_bounce_radiance with the new ray and intersection from bvh->intersect and use the equation for the estimator of the reflection equation to compute the output radiance for this round of recursion and add it to the existing L_out. 
+			Finally, if isAccumBounces is set to false, then I return the output radiance for the current round of recursion directly instead of returning the accumulated radiance L_out. 
+			And For est_radiance_global_illumination, I check to see if isAccumBounces is set to true. If it is true, then I return the sum of  zero_bounce_radiance and  at_least_one_bounce_radiance for the ceiling to light up. Otherwise, I only return the latter. 
+		</p>
 		<!-- <h2>Task4:</h2>
 		<p>
 			I implemented edge flip operation based on the screenshot below. I first obtained all of the half edges, vertices, edges, and faces before flipping. 
