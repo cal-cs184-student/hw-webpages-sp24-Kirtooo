@@ -288,6 +288,42 @@
 			  <figcaption>sample rate = 1024</figcaption>
 			</figure>
 		  </div>
+		<h2>Part5: </h2>
+		<h2>Adaptive Sampling</h2>
+		<p>
+			Adaptive sampling is a technique used in rendering to improve efficiency by allocating computational resources variably across the image. 
+			It aims to reduce noise in the final image by concentrating more samples on areas that are harder to compute (i.e., have higher variance) and fewer samples on areas that are easier to compute (i.e., have lower variance). The goal is to achieve a uniformly low-noise image while minimizing the total number of samples required, which saves on computational cost.
+			In Monte Carlo path tracing, each pixel's color is estimated by taking an average of many samples of a function (like the rendering equation). Due to the stochastic nature of Monte Carlo methods, some pixels converge to their final color faster than others. 
+			For example, pixels representing shadows or reflections may require more samples to achieve an accurate color estimation compared to pixels with a uniform color.
+			Adaptive sampling attempts to detect the convergence rate of each pixel and adapt the number of samples accordingly.
+			The following is a walkthrough of my implementation.
+			Initial Sampling: Start by taking an initial fixed number of samples (often called a "batch") for each pixel. This is the starting point for evaluating the variance across pixels.
+			Calculating Statistics: After this initial batch, calculate statistical measures for each pixel – specifically, the mean μ and the standard deviation σ. These measures give an indication of the noise level or variance at each pixel.
+			Evaluating Convergence: To determine if a pixel has converged to a stable color, calculate a confidence interval using the formula I = 1.96 * σ / sqrt(n), where n is the number of samples. This interval I is then compared against a threshold (typically maxTolerance * μ) to decide if more samples are needed.
+			Looping in Batches: If a pixel has not yet converged, take additional samples in batches and recalculate the statistical measures and the confidence interval after each batch.
+			Stopping Criterion: This process continues until either the pixel converges (the interval I is less than the threshold) or the maximum number of samples per pixel (ns_aa) is reached.
+			Final Color: Once the stopping criterion is met, the pixel's color is set to the mean color of all samples taken.
+
+		</p>
+		<h2>various sample-per-pixel rates</h2>
+		    <figure style="max-width: 40%; text-align: center;">
+			  <img src="image/blob.png" alt="Nearest Sampling with Sample Rate = 1" style="width: 100%; height: auto;">
+			  <figcaption>blob</figcaption>
+			</figure>
+			<figure style="max-width: 40%; text-align: center;">
+			  <img src="image/blob_rate.png" alt="Nearest Sampling with Sample Rate = 16" style="width: 100%; height: auto;">
+			  <figcaption>blob rate</figcaption>
+			</figure>
+			<figure style="max-width: 40%; text-align: center;">
+			  <img src="image/bunny.png" alt="Bilinear Sampling with Sample Rate = 1" style="width: 100%; height: auto;">
+			  <figcaption>bunny</figcaption>
+			</figure>
+			<figure style="max-width: 40%; text-align: center;">
+			  <img src="image/bunny_rate.png" alt="Bilinear Sampling with Sample Rate = 16" style="width: 100%; height: auto;">
+			  <figcaption>bunny rate</figcaption>
+			</figure>
+\\
+		  </div>
 		<!-- <h2>Task4:</h2>
 		<p>
 			I implemented edge flip operation based on the screenshot below. I first obtained all of the half edges, vertices, edges, and faces before flipping. 
