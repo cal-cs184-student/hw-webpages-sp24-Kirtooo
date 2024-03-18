@@ -177,6 +177,117 @@
 			Finally, if isAccumBounces is set to false, then I return the output radiance for the current round of recursion directly instead of returning the accumulated radiance L_out. 
 			And For est_radiance_global_illumination, I check to see if isAccumBounces is set to true. If it is true, then I return the sum of  zero_bounce_radiance and  at_least_one_bounce_radiance for the ceiling to light up. Otherwise, I only return the latter. 
 		</p>
+		<h2>isAccumBounces=false</h2>
+		<div style="display: flex; justify-content: space-around; align-items: flex-start; flex-wrap: wrap;">
+			<figure style="max-width: 40%; text-align: center;">
+			  <img src="image/m0fCBunny.png" alt="Nearest Sampling with Sample Rate = 1" style="width: 100%; height: auto;">
+			  <figcaption>m = 0</figcaption>
+			</figure>
+			<figure style="max-width: 40%; text-align: center;">
+			  <img src="image/m1fCBunny.png" alt="Nearest Sampling with Sample Rate = 16" style="width: 100%; height: auto;">
+			  <figcaption>m = 1</figcaption>
+			</figure>
+			<figure style="max-width: 40%; text-align: center;">
+			  <img src="image/m2fCBunny.png" alt="Bilinear Sampling with Sample Rate = 1" style="width: 100%; height: auto;">
+			  <figcaption>m = 2</figcaption>
+			</figure>
+			<figure style="max-width: 40%; text-align: center;">
+			  <img src="image/m3fCBunny.png" alt="Bilinear Sampling with Sample Rate = 16" style="width: 100%; height: auto;">
+			  <figcaption>m = 3</figcaption>
+			</figure>
+			<figure style="max-width: 40%; text-align: center;">
+			  <img src="image/m4fCBunny.png" alt="Bilinear Sampling with Sample Rate = 1" style="width: 100%; height: auto;">
+			  <figcaption>m = 4</figcaption>
+			</figure>
+			<figure style="max-width: 40%; text-align: center;">
+			  <img src="image/m5fCBunny.png" alt="Bilinear Sampling with Sample Rate = 16" style="width: 100%; height: auto;">
+			  <figcaption>m = 5</figcaption>
+			</figure>
+		  </div>
+		<h2>isAccumBounces=true</h2>
+		<div style="display: flex; justify-content: space-around; align-items: flex-start; flex-wrap: wrap;">
+			<figure style="max-width: 40%; text-align: center;">
+			  <img src="image/m0fCBunny.png" alt="Nearest Sampling with Sample Rate = 1" style="width: 100%; height: auto;">
+			  <figcaption>m = 0</figcaption>
+			</figure>
+			<figure style="max-width: 40%; text-align: center;">
+			  <img src="image/m1CBunny.png" alt="Nearest Sampling with Sample Rate = 16" style="width: 100%; height: auto;">
+			  <figcaption>m = 1</figcaption>
+			</figure>
+			<figure style="max-width: 40%; text-align: center;">
+			  <img src="image/m2CBunny.png" alt="Bilinear Sampling with Sample Rate = 1" style="width: 100%; height: auto;">
+			  <figcaption>m = 2</figcaption>
+			</figure>
+			<figure style="max-width: 40%; text-align: center;">
+			  <img src="image/m3CBunny.png" alt="Bilinear Sampling with Sample Rate = 16" style="width: 100%; height: auto;">
+			  <figcaption>m = 3</figcaption>
+			</figure>
+			<figure style="max-width: 40%; text-align: center;">
+			  <img src="image/m4CBunny.png" alt="Bilinear Sampling with Sample Rate = 1" style="width: 100%; height: auto;">
+			  <figcaption>m = 4</figcaption>
+			</figure>
+			<figure style="max-width: 40%; text-align: center;">
+			  <img src="image/bunny.png" alt="Bilinear Sampling with Sample Rate = 16" style="width: 100%; height: auto;">
+			  <figcaption>m = 5</figcaption>
+			</figure>
+		  </div>
+		<h2>Russian Roulette</h2>
+		<div style="display: flex; justify-content: space-around; align-items: flex-start; flex-wrap: wrap;">
+			<figure style="max-width: 40%; text-align: center;">
+			  <img src="image/m0fCBunny.png" alt="Nearest Sampling with Sample Rate = 1" style="width: 100%; height: auto;">
+			  <figcaption>m = 0</figcaption>
+			</figure>
+			<figure style="max-width: 40%; text-align: center;">
+			  <img src="image/m1CBunny.png" alt="Nearest Sampling with Sample Rate = 16" style="width: 100%; height: auto;">
+			  <figcaption>m = 1</figcaption>
+			</figure>
+			<figure style="max-width: 40%; text-align: center;">
+			  <img src="image/m2CBunny.png" alt="Bilinear Sampling with Sample Rate = 1" style="width: 100%; height: auto;">
+			  <figcaption>m = 2</figcaption>
+			</figure>
+			<figure style="max-width: 40%; text-align: center;">
+			  <img src="image/m3CBunny.png" alt="Bilinear Sampling with Sample Rate = 16" style="width: 100%; height: auto;">
+			  <figcaption>m = 3</figcaption>
+			</figure>
+			<figure style="max-width: 40%; text-align: center;">
+			  <img src="image/m4CBunny.png" alt="Bilinear Sampling with Sample Rate = 1" style="width: 100%; height: auto;">
+			  <figcaption>m = 4</figcaption>
+			</figure>
+			<figure style="max-width: 40%; text-align: center;">
+			  <img src="image/m100CBunny.png" alt="Bilinear Sampling with Sample Rate = 16" style="width: 100%; height: auto;">
+			  <figcaption>m = 100</figcaption>
+			</figure>
+		  </div>
+		<h2>various sample-per-pixel rates</h2>
+		    <figure style="max-width: 40%; text-align: center;">
+			  <img src="image/l1spheres.png" alt="Nearest Sampling with Sample Rate = 1" style="width: 100%; height: auto;">
+			  <figcaption>sample rate = 1</figcaption>
+			</figure>
+			<figure style="max-width: 40%; text-align: center;">
+			  <img src="image/l2spheres.png" alt="Nearest Sampling with Sample Rate = 16" style="width: 100%; height: auto;">
+			  <figcaption>sample rate = 2</figcaption>
+			</figure>
+			<figure style="max-width: 40%; text-align: center;">
+			  <img src="image/l8spheres.png" alt="Bilinear Sampling with Sample Rate = 1" style="width: 100%; height: auto;">
+			  <figcaption>sample rate = 4</figcaption>
+			</figure>
+			<figure style="max-width: 40%; text-align: center;">
+			  <img src="image/l8spheres.png" alt="Bilinear Sampling with Sample Rate = 16" style="width: 100%; height: auto;">
+			  <figcaption>sample rate = 8</figcaption>
+			</figure>
+			<figure style="max-width: 40%; text-align: center;">
+			  <img src="image/l16spheres.png" alt="Bilinear Sampling with Sample Rate = 1" style="width: 100%; height: auto;">
+			  <figcaption>sample rate = 16</figcaption>
+			</figure>
+			<figure style="max-width: 40%; text-align: center;">
+			  <img src="image/l64spheres.png" alt="Bilinear Sampling with Sample Rate = 16" style="width: 100%; height: auto;">
+			  <figcaption>sample rate = 64</figcaption>
+			</figure>
+			<figure style="max-width: 40%; text-align: center;">
+			  <img src="image/l1024spheres.png" alt="Bilinear Sampling with Sample Rate = 16" style="width: 100%; height: auto;">
+			  <figcaption>sample rate = 1024</figcaption>
+			</figure>
+		  </div>
 		<!-- <h2>Task4:</h2>
 		<p>
 			I implemented edge flip operation based on the screenshot below. I first obtained all of the half edges, vertices, edges, and faces before flipping. 
