@@ -876,6 +876,10 @@ mjx-c.mjx-c37::before {
   <a href="https://cs184.eecs.berkeley.edu/sp23/docs/proj4-part-3">
   <h2 align="middle">Part 3: Handling collisions with other objects</h2>
   </a>
+  <p>
+    This method follows the principles of physics and collision response. By calculating the intersection (or tangent) point, the algorithm finds the precise location where contact occurs, which is essential for realistic collision handling. The correction vector ensures that the point mass doesn't penetrate the object it's colliding with, which would be physically incorrect. Finally, applying friction to the correction vector accounts for the loss of energy due to the contact between surfaces, which is a common real-world phenomenon. 
+    This method allows for a simulation that is both physically plausible and visually convincing.
+  </p>
     <blockquote><b>
       Show us screenshots of your shaded cloth from <i>scene/sphere.json</i> in its final resting state 
       on the sphere using the default <code>ks = 5000</code> as well as with <code>ks = 500</code> and <code>ks = 50000</code>. 
@@ -885,15 +889,15 @@ mjx-c.mjx-c37::before {
       <table style="width:100%">
         <tbody><tr align="center">
           <td>
-            <img src="./CS 184 Mesh Editor_files/t3-ks-500.png" align="middle" width="300vw">
+            <img src="image/500.png" align="middle" width="300vw">
             <figcaption><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="1" style="font-size: 117.4%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c6B"></mjx-c><mjx-c class="mjx-c73"></mjx-c></mjx-mtext><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c35"></mjx-c><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mtext>ks</mtext><mo>=</mo><mn>500</mn></math></mjx-assistive-mml></mjx-container></figcaption>
           </td>
           <td>
-            <img src="./CS 184 Mesh Editor_files/t3-ks-5000.png" align="middle" width="300vw">
+            <img src="image/ks5000.png" align="middle" width="300vw">
             <figcaption>Initial configuration (<mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="2" style="font-size: 117.4%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c6B"></mjx-c><mjx-c class="mjx-c73"></mjx-c></mjx-mtext><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c35"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c2C"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="2"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mtext>ks</mtext><mo>=</mo><mn>5</mn><mo>,</mo><mn>000</mn></math></mjx-assistive-mml></mjx-container>)</figcaption>
           </td>
           <td>
-            <img src="./CS 184 Mesh Editor_files/t3-ks-50000.png" align="middle" width="300vw">
+            <img src="image/50000.png" align="middle" width="300vw">
             <figcaption><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="3" style="font-size: 117.4%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c6B"></mjx-c><mjx-c class="mjx-c73"></mjx-c></mjx-mtext><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c35"></mjx-c><mjx-c class="mjx-c30"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c2C"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="2"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mtext>ks</mtext><mo>=</mo><mn>50</mn><mo>,</mo><mn>000</mn></math></mjx-assistive-mml></mjx-container></figcaption>
           </td>
           <td>
@@ -907,7 +911,10 @@ mjx-c.mjx-c37::before {
     </b></blockquote>
 
     <p>
-      TODO
+      The difference between these images illustrates the effect of the stiffness constant on the simulation of cloth materials. 
+      A lower stiffness constant allows for more deformation, resulting in a material that looks more like a thin, loose fabric. 
+      As the stiffness constant increases, the material becomes less prone to bending and stretching, simulating a thicker or more tightly woven fabric. 
+      The simulation parameters are likely adjusted to study how different materials would behave in similar environmental conditions, which is a common practice in physics-based rendering and animation.
     </p>
 
 
@@ -918,7 +925,8 @@ mjx-c.mjx-c37::before {
     </b></blockquote>
 
     <div align="middle">
-      <img src="./CS 184 Mesh Editor_files/t3-shaded-cloth-at-rest.png" align="middle" width="100%">
+      <img src="image/plane1.png" align="middle" width="40%">
+      <img src="image/plane2.png" align="middle" width="40%">
     </div>
 
 
@@ -937,15 +945,15 @@ mjx-c.mjx-c37::before {
       <table style="width:100%">
         <tbody><tr align="center">
           <td>
-            <img src="./CS 184 Mesh Editor_files/t4-collision-1.png" align="middle" width="300vw">
+            <img src="image/initial.png" align="middle" width="300vw">
             <figcaption>Self collision 1</figcaption>
           </td>
           <td>
-            <img src="./CS 184 Mesh Editor_files/t4-collision-2.png" align="middle" width="300vw">
+            <img src="image/middle.png" align="middle" width="300vw">
             <figcaption>Self collision 2</figcaption>
           </td>
           <td>
-            <img src="./CS 184 Mesh Editor_files/t4-collision-3.png" align="middle" width="300vw">
+            <img src="image/end.png" align="middle" width="300vw">
             <figcaption>Self collision 3</figcaption>
           </td>
           <td>
