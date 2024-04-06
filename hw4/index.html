@@ -1086,23 +1086,34 @@ These components are combined to create the final color of a pixel. For an objec
       <table style="width:100%">
         <tbody><tr align="center">
           <td>
-            <img src="./CS 184 Mesh Editor_files/t5-bump-mapping-cloth.png" align="middle" width="400vw">
+            <img src="image/bump2.png" align="middle" width="400vw">
             <figcaption>Bump Mapping on the Cloth</figcaption>
           </td>
           <td>
-            <img src="./CS 184 Mesh Editor_files/t5-bump-mapping-sphere.png" align="middle" width="400vw">
+            <img src="image/bump2.png" align="middle" width="400vw">
             <figcaption>Bump Mapping on the Sphere</figcaption>
           </td>
           <td>
         </td></tr>
         <tr align="center">
           <td>
-            <img src="./CS 184 Mesh Editor_files/t5-displacement-mapping-sphere.png" align="middle" width="400vw">
-            <figcaption>Displacement Mapping on the Sphere</figcaption>
+            <img src="image/bump16.png" align="middle" width="400vw">
+            <figcaption>Bump Mapping on the Sphere (coarser mesh)</figcaption>
           </td>
           <td>
-            <img src="./CS 184 Mesh Editor_files/t5-displacement-mapping-sphere-2.png" align="middle" width="400vw">
+            <img src="image/bump128.png" align="middle" width="400vw">
+            <figcaption>Bump Mapping on the Sphere</figcaption>
+          </td>
+          <td>
+        </td></tr>
+        <tr align="center">
+          <td>
+            <img src="image/displacement16.png" align="middle" width="400vw">
             <figcaption>Displacement Mapping on the Sphere (coarser mesh)</figcaption>
+          </td>
+          <td>
+            <img src="image/displacement128.png" align="middle" width="400vw">
+            <figcaption>Displacement Mapping on the Sphere</figcaption>
           </td>
           <td>
         </td></tr>
@@ -1110,7 +1121,7 @@ These components are combined to create the final color of a pixel. For an objec
     </div>
 
     <p>
-      TODO
+      When you adjust the mesh's coarseness with parameters -o 16 -a 16 and then -o 128 -a 128, you're essentially changing the density of the mesh's vertices. At a lower setting (-o 16 -a 16), the sphere has fewer vertices and thus displays less detail, while at a higher setting (-o 128 -a 128), the sphere's mesh becomes finer, allowing for a more detailed and accurate displacement according to the texture map and more nuanced interaction with light, such as shadowing and highlights on the sphere. 
     </p>
 
 
